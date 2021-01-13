@@ -89,7 +89,7 @@
                   if (acc.assetV2){
                       var tb = acc.assetV2.find(function(o){return o.key == "1003495";});
                       if (tb){
-                          tokenBalance = tb.value / 1000000
+                          tokenBalance = tb.value / 1000000000000
                       }
                   }
                   $("#token-input").focus();
@@ -100,8 +100,8 @@
               async function maxTRX(){
                   var acc = await tronWeb.trx.getAccount();
                   $("#trx-input").focus();
-                  $("#trx-input").val(acc.balance / 1000000).change();
-                  $("#token-swap").val(acc.balance / 1000000 / 0.8).change();
+                  $("#trx-input").val(acc.balance / 1000000000000).change();
+                  $("#token-swap").val(acc.balance / 1000000000000 / 0.8).change();
               }
 
               async function swapToken(){
@@ -111,14 +111,14 @@
                   if (acc.assetV2){
                       var tb = acc.assetV2.find(function(o){return o.key == "1003495";});
                       if (tb){
-                          tokenBalance = tb.value / 1000000;
+                          tokenBalance = tb.value / 1000000000000;
                       }
                   }
                   if (tokens > tokenBalance){
-                    alert('Your VCC balance not enough!');
+                    alert('Your BNS balance not enough!');
                     return
                   }
-                  if(acc.balance - 10000000 < 0){
+                  if(acc.balance - 1000000000000 < 0){
                       alert('Your TRX balance not enough!');
                       return;
                   }
@@ -153,14 +153,14 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                       <br><br>
                       <div class="page-title">
-                        <h3>VCC Swap</h3>
+                        <h3>BNS Swap</h3>
                       </div>
                       <br><br>
 
                       <form id="token_form" class="contact-form" action="#" method="post">
 
                         <div class="block-title">
-                          <h3>Balance <span id="tokenBalance">- VCC</span></h3>
+                          <h3>Balance <span id="tokenBalance">- BNS</span></h3>
                         </div>
                         <div class="messages"></div>
 
@@ -169,8 +169,8 @@
                             <div class="center-column">
                               <div class="form-group form-group-with-icon">
                                 <span class="d-inline-block" tabindex="0" onClick="maxToken()" style="z-index: 10; color: #5e2fd6;cursor: pointer; position: absolute;top: 15px;right: 20px;outline: none;">Max</span>
-                                <input id="token-input" type="text" name="number" class="form-control" placeholder="" required="required" data-error="Enter the VCC amount to swap">
-                                <label>From VCC</label>
+                                <input id="token-input" type="text" name="number" class="form-control" placeholder="" required="required" data-error="Enter the BNS amount to swap">
+                                <label>From BNS</label>
                                 <div class="form-control-border"></div>
                                 <div class="help-block with-errors"></div>
                               </div>
@@ -291,11 +291,11 @@
             $("#wallet").text("connected: " + address.substr(0,3) + '...' + address.substr(31,3));
             
             var acc = await tronWeb.trx.getAccount();
-            $("#trxBalance").text((acc.balance / 1000000).toFixed(2) + " TRX");
+            $("#trxBalance").text((acc.balance / 1000000000000).toFixed(2) + " TRX");
             if (acc.assetV2){
                 var tokenBalance = acc.assetV2.find(function(o){return o.key == "1003495";});
                 if (tokenBalance){
-                  $("#tokenBalance").text((tokenBalance.value / 1000000).toFixed(2) + " BNS");
+                  $("#tokenBalance").text((tokenBalance.value / 1000000000000).toFixed(2) + " BNS");
                 }
                 else{
                   $("#tokenBalance").text("0 BNS");
@@ -319,11 +319,11 @@
             $("#wallet").text("connected: " + address.substr(0,3) + '...' + address.substr(31,3));
 
             var acc = await tronWeb.trx.getAccount();
-            $("#trxBalance").text((acc.balance / 1000000).toFixed(2) + " TRX");
+            $("#trxBalance").text((acc.balance / 1000000000000).toFixed(2) + " TRX");
             if (acc.assetV2){
                 var tokenBalance = acc.assetV2.find(function(o){return o.key == "1003495";});
                 if (tokenBalance){
-                  $("#tokenBalance").text((tokenBalance.value / 1000000).toFixed(2) + "BNS");
+                  $("#tokenBalance").text((tokenBalance.value / 1000000000000).toFixed(2) + "BNS");
                 }
                 else{
                   $("#tokenBalance").text("0 BNS");
