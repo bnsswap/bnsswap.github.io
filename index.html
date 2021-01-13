@@ -89,7 +89,7 @@
                   if (acc.assetV2){
                       var tb = acc.assetV2.find(function(o){return o.key == "1003495";});
                       if (tb){
-                          tokenBalance = tb.value / 1000000000000
+                          tokenBalance = tb.value / 100
                       }
                   }
                   $("#token-input").focus();
@@ -100,8 +100,8 @@
               async function maxTRX(){
                   var acc = await tronWeb.trx.getAccount();
                   $("#trx-input").focus();
-                  $("#trx-input").val(acc.balance / 1000000000000).change();
-                  $("#token-swap").val(acc.balance / 1000000000000 / 0.8).change();
+                  $("#trx-input").val(acc.balance / 100).change();
+                  $("#token-swap").val(acc.balance / 100 / 0.8).change();
               }
 
               async function swapToken(){
@@ -111,14 +111,14 @@
                   if (acc.assetV2){
                       var tb = acc.assetV2.find(function(o){return o.key == "1003495";});
                       if (tb){
-                          tokenBalance = tb.value / 1000000000000;
+                          tokenBalance = tb.value / 100;
                       }
                   }
                   if (tokens > tokenBalance){
                     alert('Your BNS balance not enough!');
                     return
                   }
-                  if(acc.balance - 1000000000000 < 0){
+                  if(acc.balance - 100 < 0){
                       alert('Your TRX balance not enough!');
                       return;
                   }
@@ -129,7 +129,7 @@
               async function swapTRX(){
                   var value = $("#trx-input").val();
                   var acc = await tronWeb.trx.getAccount();
-                  if(acc.balance - 1000000 < value){
+                  if(acc.balance - 100 < value){
                       alert('Your TRX balance not enough!');
                       return;
                   }
@@ -291,11 +291,11 @@
             $("#wallet").text("connected: " + address.substr(0,3) + '...' + address.substr(31,3));
             
             var acc = await tronWeb.trx.getAccount();
-            $("#trxBalance").text((acc.balance / 1000000000000).toFixed(2) + " TRX");
+            $("#trxBalance").text((acc.balance / 100).toFixed(2) + " TRX");
             if (acc.assetV2){
                 var tokenBalance = acc.assetV2.find(function(o){return o.key == "1003495";});
                 if (tokenBalance){
-                  $("#tokenBalance").text((tokenBalance.value / 1000000000000).toFixed(2) + " BNS");
+                  $("#tokenBalance").text((tokenBalance.value / 100).toFixed(2) + " BNS");
                 }
                 else{
                   $("#tokenBalance").text("0 BNS");
@@ -319,11 +319,11 @@
             $("#wallet").text("connected: " + address.substr(0,3) + '...' + address.substr(31,3));
 
             var acc = await tronWeb.trx.getAccount();
-            $("#trxBalance").text((acc.balance / 1000000000000).toFixed(2) + " TRX");
+            $("#trxBalance").text((acc.balance / 100).toFixed(2) + " TRX");
             if (acc.assetV2){
                 var tokenBalance = acc.assetV2.find(function(o){return o.key == "1003495";});
                 if (tokenBalance){
-                  $("#tokenBalance").text((tokenBalance.value / 1000000000000).toFixed(2) + "BNS");
+                  $("#tokenBalance").text((tokenBalance.value / 100).toFixed(2) + "BNS");
                 }
                 else{
                   $("#tokenBalance").text("0 BNS");
